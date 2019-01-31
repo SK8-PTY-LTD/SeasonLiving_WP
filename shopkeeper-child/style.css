@@ -1,0 +1,27 @@
+/*
+Theme Name: Season Living
+Theme URI: http://shopkeeper.getbowtied.com/
+Description: This is powered by SK8Tech.
+Author: SK8Tech
+Author URI: https://sk8.tech/
+Template: shopkeeper
+Version: 1.0
+*/
+
+
+/****************************************************************/
+/*************** ADD YOUR CUSTOM CSS IN THIS AREA ***************/
+/****************************************************************/
+
+
+.off-canvas .position-right .is-transition-overlap .is-open{
+	width: 180px;
+}
+
+
+
+
+
+/****************************************************************/
+/****************************************************************/
+/****************************************************************/
