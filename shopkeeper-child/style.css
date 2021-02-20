@@ -18,10 +18,272 @@ Version: 1.0
 	width: 180px;
 }
 
+/****************************************************************/
+/*************** After Pay Plugin Customisation   ***************/
+/****************************************************************/
 
+#afterpay-checkout-instalment-info-container .instalment-wrapper .instalment .instalment-header-text {
+	padding: 0px 5px 15px 5px;
+}
+#afterpay-checkout-instalment-info-container .instalment-wrapper .instalment .instalment-footer-text {
+	padding: 0px 5px 15px 5px;
+}
 
 
 
 /****************************************************************/
 /****************************************************************/
 /****************************************************************/
+
+/* --------------------------- */
+/* for shop sliderbar and menu */
+.shop_sidebar .widget-title {
+	font-weight: 100 !important;
+}
+
+.shop_sidebar .widget a {
+	font-weight: 100;
+	text-decoration: underline;
+}
+
+.mobile-navigation {
+	border-bottom: 0;
+	background-color: #EFEFEF;
+	padding: 5px 0 0 0;
+}
+
+.mobile-navigation ul li, .mobile-navigation ul li a, .mobile-navigation ul li a strong{
+    font-weight: 200 !important;
+    color: rgb(102, 102, 102) !important;
+}
+
+.mobile-navigation > ul > li {
+    border-bottom: 0.5px solid #FFFFFF;
+}
+
+.mobile-navigation .sub-menu {
+	padding-bottom: 10px;
+}
+
+.nano .content {
+	margin-right: -17px;
+}
+
+.off-canvas.position-right {
+    width: 320px !important;
+}
+/* for shop sliderbar and menu */
+/* --------------------------- */
+
+/* ----------------------------------------- */
+/* Style for product tabs and specification  */
+
+@media only screen and (max-width: 767px) {
+	.woocommerce-tabs {
+		background-color: #f3f3f3 !important;
+		padding-top: 0px;
+	}
+	
+	.woocommerce-tabs > .row {
+		background-color: #FFFFFF;
+		padding: 0px;
+	}
+
+	.woocommerce-tabs > .row .columns {
+		padding: 0px;
+	}
+
+	.woocommerce div.product ul.tabs {
+		display: -webkit-box;
+		display: flex;
+		justify-content: space-around;
+		margin-bottom:0px !important;
+	}
+
+	.woocommerce div.product ul.tabs li {
+		display: inline-block !important;
+		float:left;
+		cursor: pointer;
+		text-align: center;
+		padding: 6px 5px 4px !important;
+		width: 100%;	
+		border-radius: 10px 10px 0 0 !important;
+		margin-left: 0px !important;
+		margin-right: 0px !important;
+	}
+
+	.woocommerce div.product ul.tabs li.active {
+		color: #666;
+		background: #f3f3f3 !important;	
+		border-top-width: 0px !important;
+	}
+
+	.woocommerce-tabs .panel.entry-content {
+		background: #f3f3f3;
+		padding: 1rem !important;
+	}
+	
+}
+
+/* Style for product tabs and specification  */
+.woocommerce table.shop_attributes {
+	margin-top: 2rem !important;
+	border-top-width: 0px !important;
+	font-size: 0.8rem;
+}
+
+.woocommerce table.shop_attributes th.woocommerce-product-attributes-item__label {
+	text-transform: uppercase;
+	width: 40%;
+}
+
+.woocommerce table.shop_attributes td.woocommerce-product-attributes-item__value {
+	font-style: normal;
+}
+
+.product_layout_classic table.shop_attributes th, .product_layout_classic table.shop_attributes td {
+	padding: 8px 0 8px 0 !important;
+}
+
+@media only screen and (max-width: 767px) {
+	.woocommerce table.shop_attributes th.woocommerce-product-attributes-item__label {
+		display: block;
+		border-bottom: 0px;
+		padding: 8px 0 8px 0 !important;
+		width: 100% !important;
+	}
+	
+	.woocommerce table.shop_attributes td.woocommerce-product-attributes-item__value {
+		display: block;
+		padding: 8px 0 8px 0 !important;
+		color: #666;
+	}
+	
+	woocommerce table.shop_attributes td.woocommerce-product-attributes-item__value p {
+		padding: 0 !important;
+	}
+}
+
+/* Style for product tabs and specification  */
+/* ----------------------------------------- */
+
+/* ----------------- */
+/* for shopping card */
+
+@media only screen and (max-width: 767px) {
+	.shopkeeper-mini-cart {
+		width: 80% !important;		
+	} 
+}
+
+/* set style for cart for ipad or mobile size */
+@media only screen and (max-width: 1023px) {
+  .shopkeeper-mini-cart {
+		display: inherit;	
+		right: 1rem;
+		top: 3rem;
+	} 
+}
+
+/* for shopping card */
+/* ----------------- */
+
+@media screen and (max-width: 600px) {
+	#wpadminbar {
+  		position: fixed; !important;
+	}
+}
+
+/* ---------- */
+/*   footer   */
+#site-footer .footer-links ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+	
+#site-footer .footer-links ul li, #site-footer .footer-links ul li a {
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	font-weight: bold;
+}	
+
+#site-footer .site-footer-widget-area h3.widget-title {
+	font-size: 1.2rem !important;	
+}
+
+#site-footer .site-footer-widget-area .footer-links-menu {
+	margin-top: 1em;
+}
+	
+@media only screen and (min-width: 1024px) {
+	#site-footer .site-footer-widget-area {
+		width: 75%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.site-footer-widget-area>.row {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.footer_socials_wrapper {
+	margin-bottom: 0;
+}
+
+.footer-social-media {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 2rem;
+}
+
+
+/*   footer   */
+/* ---------- */
+
+/* ---------------------------- */
+/*   Shipping fee description   */
+.woocommerce-shipping-totals.shipping th {
+	width: 40%;
+}
+
+.shipping-fee-description {
+	text-transform: none;
+    font-weight: lighter;
+    border-top: 1px solid lightgray;
+    color: #636363;
+    text-indent: 0px;
+    margin-left: -21px;
+    margin-top: 5px;
+    font-size: 12px;
+    padding-top: 5px;
+    line-height: 1.4285em;
+}
+/*   Shipping fee description   */
+/* ---------------------------- */
+
+/* ---------- */
+/*   utility  */
+@media only screen and (max-width: 767px) {
+	.order-sm-1 {
+		order: 1;
+	}
+	
+	.order-sm-2 {
+		order: 2;
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	.order-md-1 {
+		order: 1;
+	}
+	
+	.order-md-2 {
+		order: 2;
+	}
+}
+
+/*   utility  */
+/* ---------- */

@@ -1,8 +1,42 @@
 <?php //Start building your awesome child theme functions
 
+
+// ----------------------------------------
+// shipping fee description start
+// ----------------------------------------
+
+add_action( 'woocommerce_after_shipping_rate', 'action_after_shipping_rate', 20, 2 );
+function action_after_shipping_rate ( $method, $index ) {
+	if ( 'flat_rate:4' === $method->id ) {
+        echo __("<p class='shipping-fee-description'>This is an estimated shipping fee, please enter full delivery address to get accurate shipping fee.</p>");
+    }
+	
+    //if( 'flat_rate:6' === $method->id ) {
+    //    echo __("<p class='shipping-fee-description'>Delivered to your room of choice on any floor.</p>");
+    //}
+    if( 'flat_rate:11' === $method->id ) {
+        echo __("<p class='shipping-fee-description'>Delivered to your room of choice on any floor and assembled.</p>");
+    }
+}
+
+// ----------------------------------------
+// shipping fee description end
+// ----------------------------------------
+
+// register a new widget area for single product page 
+if ( function_exists('register_sidebar') )
+  register_sidebar(array(
+    'name' => __( 'Single Product Widget Area', 'shopkeeper' ),
+	'id'            => 'product-widget-area',
+    'before_widget' => '<div class = "product-widget-container row large-12 xlarge-9 xxlarge-8">',
+    'after_widget' => '</div>',
+    'before_title' => '<h3>',
+    'after_title' => '</h3>',
+  )
+);
+
 add_action( 'wp_enqueue_scripts', 'shopkeeper_enqueue_styles', 100 );
 function shopkeeper_enqueue_styles() {
-    
     // enqueue parent styles
 	wp_enqueue_style('shopkeeper-parent-styles', get_template_directory_uri() .'/style.css');
 
@@ -78,3 +112,70 @@ function my_login_logo_url_title() {
 add_filter( 'login_headertitle', 'my_login_logo_url_title' );
 
 // END LOGIN PAGE CUSTOMISATION 
+// 
+// -------------------------------------------------
+// /* Added by Afterpay 09/05/19 - Updated 22/05/19 */
+/* Change priority/order of Afterpay instalment text */
+if ( class_exists( 'WC_Gateway_Afterpay' ) ) {
+remove_action( 'woocommerce_single_product_summary', array(WC_Gateway_Afterpay::getInstance(), 'print_info_for_product_detail_page'), 15, 0 );
+add_action( 'woocommerce_single_product_summary', array(WC_Gateway_Afterpay::getInstance(), 'print_info_for_product_detail_page'), 1, 0 );
+}
+
+// ----------------------------------------
+// add specification tab in product detail
+// ----------------------------------------
+if ( ! function_exists( 'woocommerce_product_specifications_tab' ) ) {
+	/**
+	 * Output the specifications tab content.
+	 */
+	function woocommerce_product_specifications_tab() {
+		wc_get_template( 'single-product/tabs/specifications.php' );
+	}
+}
+
+if ( ! function_exists( 'woocommerce_default_product_tabs' ) ) {
+
+	/**
+	 * Add default product tabs to product pages.
+	 *
+	 * @param array $tabs Array of tabs.
+	 * @return array
+	 */
+	function woocommerce_default_product_tabs( $tabs = array() ) {
+		global $product, $post;
+
+		// Description tab - shows product content.
+		if ( $post->post_content ) {
+			$tabs['description'] = array(
+				'title'    => __( 'Description', 'woocommerce' ),
+				'priority' => 10,
+				'callback' => 'woocommerce_product_description_tab',
+			);
+		}
+
+		// Specifications tab - shows attributes.
+		if ( $product && ( $product->has_attributes() || apply_filters( 'wc_product_enable_dimensions_display', $product->has_weight() || $product->has_dimensions() ) ) ) {
+			$tabs['specifications'] = array(
+				'title'    => __( 'Specifications', 'woocommerce' ),
+				'priority' => 20,
+				'callback' => 'woocommerce_product_specifications_tab',
+			);
+		}
+		
+		return $tabs;
+	}
+}
+// ----------------------------------------
+// end of specification tab 
+// ----------------------------------------
+
+// ----------------------------------------
+// Verification for Google Merchant
+// ----------------------------------------
+/* Describe what the code snippet does so you can remember later on */
+add_action('wp_head', 'your_function_name');
+function your_function_name(){
+?>
+<meta name="google-site-verification" content="39D1VYjm4AA_WFX7cj5R6OIpaN8u_2Ub2PeuzlQ0NDE" />
+<?php
+};
