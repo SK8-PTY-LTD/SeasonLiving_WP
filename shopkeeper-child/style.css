@@ -52,7 +52,12 @@ Version: 1.0
 	padding: 5px 0 0 0;
 }
 
-.mobile-navigation ul li, .mobile-navigation ul li a, .mobile-navigation ul li a strong{
+.mobile-navigation ul li {
+	padding: 16px 16px 16px 32px;
+}
+
+.mobile-navigation ul li a, 
+.mobile-navigation ul li a strong{
     font-weight: 200 !important;
     color: rgb(102, 102, 102) !important;
 }
@@ -287,3 +292,25 @@ Version: 1.0
 
 /*   utility  */
 /* ---------- */
+
+/** Checkout Page Checkbox **/
+.input-checkbox:checked:before, input[type="checkbox"]:checked:before {
+	z-index: 1;
+}
+
+/** Product Page Description Top Padding Removal **/
+.product_layout_classic .woocommerce-tabs {
+	padding-top: 0;
+}
+
+/** Mobile Menu Icon Spacing **/
+@media screen and (max-width: 63.9375em) {
+	.top-headers-wrapper .site-header .site-header-wrapper .site-tools > ul > li {
+		margin-left: 12px;
+	}
+}
+
+/** Hide Continue Shopping on Cart page */
+.shopkeeper-continue-shopping {
+	display: none;
+}

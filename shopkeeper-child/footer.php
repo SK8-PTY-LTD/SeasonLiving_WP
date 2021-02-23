@@ -5,6 +5,31 @@
 }
 
 /*-------------------*/
+/* footer options    */
+#site-footer
+{
+	background: #828282;
+}
+
+#site-footer,
+#site-footer .copyright_text a
+{
+	color: #fcfcfc;
+}
+
+#site-footer .site-footer-widget-area h3.widget-title,
+#site-footer .footer-links ul li a,
+#site-footer .footer-links ul li span {
+	color: #fcfcfc;
+}
+
+.footer_socials_wrapper ul.sk_social_icons_list li svg,
+.site-footer-widget-area ul.sk_social_icons_list li svg
+{
+	fill: #fcfcfc;
+}
+
+/*-------------------*/
 /* mobile menu       */
 	
 .mobile-navigation {
@@ -144,10 +169,33 @@
 									</nav><!-- #site-navigation -->   
 								
                                     <div class="copyright_text">
-                                        <?php if ( (isset($shopkeeper_theme_options['footer_copyright_text'])) && (trim($shopkeeper_theme_options['footer_copyright_text']) != "" ) ) { ?>
-                                            <?php echo wp_kses_post( __( $shopkeeper_theme_options['footer_copyright_text'], 'shopkeeper' ) ); ?>
-                                        <?php } ?>
-                                    </div><!-- .copyright_text -->  
+                                    	<?php
+											echo do_shortcode(
+												wp_kses(
+													__( Shopkeeper_Opt::getOption( 'footer_copyright_text' ), 'shopkeeper' ),
+													array(
+														'a'      => array(
+															'href'   => array(),
+															'title'  => array(),
+															'target' => array(),
+														),
+														'br'     => array(),
+														'em'     => array(),
+														'strong' => array(),
+														'img'    => array(
+															'alt'               => array(),
+															'src'               => array(),
+															'title'             => array(),
+															'width'             => array(),
+															'height'            => array(),
+															'referrerpolicy'    => array(),
+															'crossorigin'       => array(),
+														),
+													)
+												)
+											);
+											?>
+									</div><!-- .copyright_text -->
                             
 								</div><!--.large-12-->
 							</div><!-- .row --> 
@@ -188,130 +236,6 @@
 	        </div>
         </div>
     	<?php endif; ?>
-        
-		<div class="off-canvas-wrapper">
-			<div class="off-canvas <?php echo is_rtl() ? 'position-left' : 'position-right' ?> " id="offCanvasRight1" data-off-canvas>
-
-				<div class="menu-close hide-for-large">
-					<div class='float-left'>
-						<img class="sticky-logo mobile-navigation-logo" src="https://seasonliving.com.au/wp-content/uploads/2018/12/aged-and-glowing-gold_hd-206x87.png" title="" alt="SeasonLiving" scale="0">
-					</div>
-					<button class="close-button" aria-label="Close menu" type="button" data-close>
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-
-	           	<div class="nano">
-	                <div class="content">
-	                    <div class="offcanvas_content_right">
-
-	                        <div id="mobiles-menu-offcanvas">
-	                                
-		                            <?php if ( (isset($shopkeeper_theme_options['main_header_layout'])) && ( $shopkeeper_theme_options['main_header_layout'] != "2" ) && ( $shopkeeper_theme_options['main_header_layout'] != "22" ) ) : ?>
-
-		                            	<?php if( has_nav_menu("main-navigation") ) : ?>
-			                                <nav class="mobile-navigation primary-navigation hide-for-large" role="navigation">
-			                                <?php 
-			                                    wp_nav_menu(array(
-			                                        'theme_location'  => 'main-navigation',
-			                                        'fallback_cb'     => false,
-			                                        'container'       => false,
-			                                        'items_wrap'      => '<ul id="%1$s">%3$s</ul>',
-			                                    ));
-			                                ?>
-			                                </nav>
-			                            <?php endif; ?>
-		                                
-		                            <?php endif; ?>
-		                            
-		                            <?php if ( (isset($shopkeeper_theme_options['main_header_layout'])) && ( $shopkeeper_theme_options['main_header_layout'] == "2" || $shopkeeper_theme_options['main_header_layout'] == "22" ) ) : ?>
-		                                
-		                                <?php if( has_nav_menu("centered_header_left_navigation") ) : ?>
-			                                <nav class="mobile-navigation hide-for-large" role="navigation">
-			                                <?php 
-			                                    wp_nav_menu(array(
-			                                        'theme_location'  => 'centered_header_left_navigation',
-			                                        'fallback_cb'     => false,
-			                                        'container'       => false,
-			                                        'items_wrap'      => '<ul id="%1$s">%3$s</ul>',
-			                                    ));
-			                                ?>
-			                                </nav>
-			                            <?php endif; ?>
-		                                
-		                                <?php if( has_nav_menu("centered_header_right_navigation") ) : ?>
-			                                <nav class="mobile-navigation hide-for-large" role="navigation">
-			                                <?php 
-			                                    wp_nav_menu(array(
-			                                        'theme_location'  => 'centered_header_right_navigation',
-			                                        'fallback_cb'     => false,
-			                                        'container'       => false,
-			                                        'items_wrap'      => '<ul id="%1$s">%3$s</ul>',
-			                                    ));
-			                                ?>
-			                                </nav>
-			                            <?php endif; ?>
-		                                
-		                            <?php endif; ?>
-									
-									<?php if ( (isset($shopkeeper_theme_options['main_header_off_canvas'])) && (trim($shopkeeper_theme_options['main_header_off_canvas']) == "1" ) ) : ?>
-										<?php if( has_nav_menu("secondary_navigation") ) : ?>
-			                                <nav class="mobile-navigation" role="navigation">
-			                                <?php 
-			                                    wp_nav_menu(array(
-			                                        'theme_location'  => 'secondary_navigation',
-			                                        'fallback_cb'     => false,
-			                                        'container'       => false,
-			                                        'items_wrap'      => '<ul id="%1$s">%3$s</ul>',
-			                                    ));
-			                                ?>
-			                                </nav>
-			                            <?php endif; ?>
-		                            <?php endif; ?>
-		                            
-		                            <?php						
-									$theme_locations  = get_nav_menu_locations();
-									if (isset($theme_locations['top-bar-navigation'])) {
-										$menu_obj = get_term($theme_locations['top-bar-navigation'], 'nav_menu');
-									}
-									
-									if ( (isset($menu_obj->count) && ($menu_obj->count > 0)) || (is_user_logged_in()) ) {
-									?>
-									
-										<?php if ( (isset($shopkeeper_theme_options['top_bar_switch'])) && ($shopkeeper_theme_options['top_bar_switch'] == "1" ) ) : ?>
-											<?php if( has_nav_menu("top-bar-navigation") ) : ?>
-			                                    <nav class="mobile-navigation hide-for-large" role="navigation">								
-			                                    <?php 
-			                                        wp_nav_menu(array(
-			                                            'theme_location'  => 'top-bar-navigation',
-			                                            'fallback_cb'     => false,
-			                                            'container'       => false,
-			                                            'items_wrap'      => '<ul id="%1$s">%3$s</ul>',
-			                                        ));
-			                                    ?>
-			                                    
-			                                    <?php if ( is_user_logged_in() ) { ?>
-			                                        <ul><li><a href="<?php echo get_site_url(); ?>/?<?php echo get_option('woocommerce_logout_endpoint'); ?>=true" class="logout_link"><?php esc_html_e('Logout', 'woocommerce'); ?></a></li></ul>
-			                                    <?php } ?>
-			                                    </nav>
-			                                <?php endif; ?>
-		                                <?php endif; ?>
-									
-									<?php } ?>
-
-	                        </div>
-	                        <?php if ( is_active_sidebar( 'offcanvas-widget-area' ) ) : ?>
-	                        	<div class="shop_sidebar wpb_widgetised_column">
-	                            	<?php dynamic_sidebar( 'offcanvas-widget-area' ); ?>
-	                            </div>
-	                        <?php endif; ?>
-
-						</div> <!-- offcanvas_content_right -->
-					</div> <!-- content -->
-				</div> <!-- nano -->
-			</div> <!-- offcanvas -->
-		</div> <!-- offcanvas wrapper -->
-
 
     <!-- Mini Cart -->
     <?php if (class_exists('WooCommerce')) { ?>
